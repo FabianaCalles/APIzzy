@@ -1,0 +1,1189 @@
+
+// import React, { useState } from 'react';
+// import { useForm, Controller } from 'react-hook-form';
+// import { TextField, Button, RadioGroup, FormControlLabel, Radio, FormControl, FormLabel, Tooltip, IconButton } from '@material-ui/core';
+// import HelpIcon from '@material-ui/icons/Help';
+// import { Container, Row, Col } from "react-bootstrap";
+// import contactImg from "../assets/img/contact-img.svg";
+// import 'animate.css';
+// import TrackVisibility from 'react-on-screen';
+
+
+// const APIForm = () => {
+//     const { handleSubmit, control } = useForm();
+//     const [method, setMethod] = useState('');
+//     const [source, setSource] = useState('');
+
+//     const onSubmit = (data) => {
+//         console.log(data);
+//     };
+
+//     const handleMethodChange = (event) => {
+//         setMethod(event.target.value);
+//     };
+
+//     const handleSourceChange = (event) => {
+//         setSource(event.target.value);
+//     };
+
+//     return (
+//     <section className="contact" id="APIForm">
+
+//         <Container>
+//         <Row className="align-items-center">
+//           <Col size={12} md={6}>
+//             <TrackVisibility>
+//               {({ isVisible }) =>
+//                 <img className={isVisible ? "animate__animated animate__zoomIn" : ""} src={contactImg} alt="Contact Us"/>
+//               }
+//             </TrackVisibility>
+//           </Col>
+//           <Col size={12} md={6}>
+//             <TrackVisibility>
+//               {({ isVisible }) =>
+//                 <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
+//                 <h2>Crea tu API</h2>
+
+//                 <form onSubmit={handleSubmit(onSubmit)}>
+//                     <Controller
+//                         name="nombre"
+//                         control={control}
+//                         defaultValue=""
+//                         render={({ field }) => (
+//                             <div>
+//                                 <TextField {...field} label="Nombre" />
+//                                 <Tooltip title="Nombre de la API en alfanumérico">
+//                                     <IconButton aria-label="help">
+//                                         <HelpIcon />
+//                                     </IconButton>
+//                                 </Tooltip>
+//                             </div>
+//                         )}
+//                     />
+
+//                     <Controller
+//                         name="recurso"
+//                         control={control}
+//                         defaultValue=""
+//                         render={({ field }) => (
+//                             <div>
+//                                 <TextField {...field} label="Recurso" />
+//                                 <Tooltip title="Agregar el recurso de la API">
+//                                     <IconButton aria-label="help">
+//                                         <HelpIcon />
+//                                     </IconButton>
+//                                 </Tooltip>
+//                             </div>
+//                         )}
+//                     />
+
+//                     <FormControl component="fieldset">
+//                         <FormLabel component="legend">Método</FormLabel>
+//                         <Controller
+//                             control={control}
+//                             defaultValue=""
+//                             name="metodo"
+//                             render={({ field }) => (
+//                                 <RadioGroup {...field} onChange={(e) => { field.onChange(e); handleMethodChange(e); }}>
+//                                     <FormControlLabel value="GET" control={<Radio />} label="GET" />
+//                                     <FormControlLabel value="POST" control={<Radio />} label="POST" />
+//                                 </RadioGroup>
+//                             )}
+//                         />
+//                     </FormControl>
+
+//                     {method === 'GET' &&
+//                         <Controller
+//                             name="source"
+//                             control={control}
+//                             defaultValue=""
+//                             render={({ field }) => (
+//                                 <div>
+//                                     <TextField {...field} label="Source" select SelectProps={{ native: true }} onChange={(e) => { field.onChange(e); handleSourceChange(e); }}>
+//                                         <option value=""></option>
+//                                         <option value="JSON">JSON</option>
+//                                         <option value="SQL">SQL</option>
+//                                     </TextField>
+//                                     <Tooltip title="Elige entre JSON y SQL para la fuente de datos">
+//                                         <IconButton aria-label="help">
+//                                             <HelpIcon />
+//                                         </IconButton>
+//                                     </Tooltip>
+//                                 </div>
+//                             )}
+//                         />
+//                     }
+
+//                     {source === 'JSON' &&
+//                         <>
+//                             <Controller
+//                                 name="ubicacion"
+//                                 control={control}
+//                                 defaultValue=""
+//                                 render={({ field }) => (
+//                                     <div>
+//                                         <TextField {...field} label="Ubicación" />
+//                                         <Tooltip title="Indica el path de la base de datos">
+//                                             <IconButton aria-label="help">
+//                                                 <HelpIcon />
+//                                             </IconButton>
+//                                         </Tooltip>
+//                                     </div>
+//                                 )}
+//                             />
+                            
+//                             <Controller
+//                                 name="key"
+//                                 control={control}
+//                                 defaultValue=""
+//                                 render={({ field }) => (
+//                                     <div>
+//                                         <TextField {...field} label="Key" />
+//                                         <Tooltip title="Nombre de la key en ese JSON del campo de la base de datos">
+//                                             <IconButton aria-label="help">
+//                                                 <HelpIcon />
+//                                             </IconButton>
+//                                         </Tooltip>
+//                                     </div>
+//                                 )}
+//                             />
+//                         </>
+//                     }
+                    
+//                     {source === 'SQL' &&
+//                         <>
+//                             <Controller
+//                                 name="nombreBaseDatos"
+//                                 control={control}
+//                                 defaultValue=""
+//                                 render={({ field }) => <TextField {...field} label="Nombre de la base de datos" />}
+//                             />
+
+//                             {/* Agrega los demás campos de la misma manera */}
+//                         </>
+//                     }
+
+//                     <Button type="submit" variant="contained" color="primary">Crear</Button>
+//                 </form>
+//                 </div>}
+//             </TrackVisibility>
+//           </Col>
+//         </Row>
+//       </Container>
+//     </section>
+
+//     );
+// };
+
+// export const FormularioAPI = APIForm;
+
+
+
+
+
+// import React, { useState } from 'react';
+
+// // Formulario para la creación de APIs
+// export const FormularioAPI = ({ onFormSubmit }) => {
+//     const [method, setMethod] = useState("");  // para controlar si es GET o POST
+
+//     const onSubmit = (data) => {
+//         onFormSubmit(data);
+//     };
+
+//     return (
+//         <form onSubmit={handleSubmit(onSubmit)}>
+//             <label>Nombre de la API:</label>
+//             <input name="apiName" {...register("apiName")} required />
+
+//             <label>Recurso:</label>
+//             <button type="button">+</button>
+//             <button type="button">-</button>
+
+//             <label>Nombre del subdominio:</label>
+//             <input name="subdomainName" {...register("subdomainName")} required />
+
+//             <label>Path del subdominio:</label>
+//             <input name="subdomainPath" {...register("subdomainPath")} required />
+
+//             <label>Método:</label>
+//             <select name="method" {...register("method")} onChange={(e) => setMethod(e.target.value)} required>
+//                 <option value="GET">GET</option>
+//                 <option value="POST">POST</option>
+//             </select>
+
+//             {method === "GET" && (
+//                 <div>
+//                     <label>Source:</label>
+//                     <select name="source" {...register("source")} required>
+//                         <option value="JSON">JSON</option>
+//                         <option value="SQL">SQL</option>
+//                     </select>
+
+//                     {watch("source") === "JSON" && (
+//                         <div>
+//                             <label>Ubicación:</label>
+//                             <input name="jsonLocation" {...register("jsonLocation")} required />
+
+//                             <label>Key:</label>
+//                             <input name="jsonKey" {...register("jsonKey")} required />
+//                         </div>
+//                     )}
+
+//                     {watch("source") === "SQL" && (
+//                         <div>
+//                             <label>Nombre de la base de datos:</label>
+//                             <input name="dbName" {...register("dbName")} required />
+
+//                             {/* Aquí irían los otros campos para SQL... */}
+//                         </div>
+//                     )}
+//                 </div>
+//             )}
+
+//             {/* Aquí iría la parte para el método POST, que sería similar al GET... */}
+
+//             <button type="submit">Crear</button>
+//         </form>
+//     );
+// };
+
+// // Componente padre (si decides usarlo)
+// const App = () => {
+//     const [formData, setFormData] = useState(null);
+
+//     const handleFormSubmit = (data) => {
+//         setFormData(data);
+//     };
+
+//     return (
+//         <div>
+//             <FormularioAPI onFormSubmit={handleFormSubmit} />
+//             {formData && <div>{JSON.stringify(formData)}</div>}
+//         </div>
+//     );
+// };
+
+// export default FormularioAPI;  // Exportamos FormularioAPI por defecto
+
+
+
+
+//AQUI LTIMO GENERADO SIN GET OPTIONS SIN ALERTAS
+
+// import React, { useState } from 'react';
+// import { Row, Col, Form, Input, Label, FormGroup, Button, FormFeedback } from 'reactstrap';
+
+// export const FormularioAPI = () => {
+//     const [data, setData] = useState({
+//         apiName: '',
+//         resources: [{ name: '', subdomain: '', method: '', source: '', jsonLocation: '', jsonKey: '', dbName: '', user: '', password: '', ip: '', port: '', column: '', table: '', raw: '', response: '' }],
+//         invalidAPIName: false,
+//     });
+
+//     const onChange = (e, index) => {
+//         const { name, value } = e.target;
+//         let resourcesCopy = [...data.resources];
+//         resourcesCopy[index][name] = value;
+//         setData(prevState => ({ ...prevState, resources: resourcesCopy }));
+//     }
+
+//     const addResource = () => {
+//         setData(prevState => ({ ...prevState, resources: [...prevState.resources, { name: '', subdomain: '', method: '', source: '', jsonLocation: '', jsonKey: '', dbName: '', user: '', password: '', ip: '', port: '', column: '', table: '', raw: '', response: '' }] }));
+//     }
+
+//     const removeResource = index => {
+//         let resourcesCopy = [...data.resources];
+//         resourcesCopy.splice(index, 1);
+//         setData(prevState => ({ ...prevState, resources: resourcesCopy }));
+//     }
+
+//     const enviarAlaBD = e => {
+//         e.preventDefault();
+//         // Puedes agregar más validaciones si es necesario.
+//         console.log("Se envian los datos " + JSON.stringify(data));
+//     }
+
+//     return (
+//         <div>
+//             <Row>
+//                 <Col xs="3"></Col>
+//                 <Col xs="6">
+//                     <h2>Registro de API</h2>
+//                     <Form onSubmit={enviarAlaBD}>
+//                         <FormGroup>
+//                             <Label>Nombre de la API:</Label>
+//                             <Input type="text" name="apiName" value={data.apiName} onChange={e => setData({ ...data, apiName: e.target.value })} />
+//                             <FormFeedback>El campo nombre es obligatorio</FormFeedback>
+//                         </FormGroup>
+
+//                         {data.resources.map((resource, index) => (
+//                             <div key={index}>
+//                                 <h4>
+//                                     Recurso {index + 1}
+//                                     <Button color="danger" onClick={() => removeResource(index)} style={{ marginLeft: '10px' }}>Eliminar</Button>
+//                                 </h4>
+//                                 <FormGroup>
+//                                     <Label>Nombre del recurso: <span title="Nombre único del recurso. Ej: Usuarios" style={{cursor: "pointer", color: "blue"}}>?</span></Label>
+//                                     <Input type="text" name="name" value={resource.name} onChange={e => onChange(e, index)} />
+//                                 </FormGroup>
+//                                 <FormGroup>
+//                                     <Label>Subdominio (path): <span title="Path específico para el recurso. Ej: /users" style={{cursor: "pointer", color: "blue"}}>?</span></Label>
+//                                     <Input type="text" name="subdomain" value={resource.subdomain} onChange={e => onChange(e, index)} />
+//                                 </FormGroup>
+//                                 <FormGroup>
+//                                     <Label>Método: <span title="Método HTTP para el recurso. GET para obtener datos, POST para enviar." style={{cursor: "pointer", color: "blue"}}>?</span></Label>
+//                                     <Input type="select" name="method" value={resource.method} onChange={e => onChange(e, index)}>
+//                                         <option value="">Selecciona un método</option>
+//                                         <option value="GET">GET</option>
+//                                         <option value="POST">POST</option>
+//                                     </Input>
+//                                 </FormGroup>
+//                                 {/* ... (resto del código no modificado) */}
+//                             </div>
+//                         ))}
+//                         <Button onClick={addResource}>Agregar recurso</Button>
+//                         <FormGroup>
+//                             <Button color="success" type="submit">Crear</Button>
+//                         </FormGroup>
+//                     </Form>
+//                 </Col>
+//             </Row>
+//         </div>
+//     );
+// }
+
+//AQUI LTIMO GENERADO SIN GET OPTIONS CON ALERTAS
+// import React, { useState } from 'react';
+// import { Row, Col, Form, Input, Label, FormGroup, Button, FormFeedback, Alert } from 'reactstrap';
+
+// export const FormularioAPI = () => {
+//     const [data, setData] = useState({
+//         apiName: '',
+//         resources: [{ name: '', subdomain: '', method: '', source: '', jsonLocation: '', jsonKey: '', dbName: '', user: '', password: '', ip: '', port: '', column: '', table: '', raw: '', response: '' }],
+//         invalidAPIName: false,
+//     });
+//     const [showSuccess, setShowSuccess] = useState(false);
+//     const [showError, setShowError] = useState(false);
+
+//     const onChange = (e, index) => {
+//         const { name, value } = e.target;
+//         let resourcesCopy = [...data.resources];
+//         resourcesCopy[index][name] = value;
+//         setData(prevState => ({ ...prevState, resources: resourcesCopy }));
+//         if(showError) {
+//             validateFields();
+//         }
+//     }
+
+//     const addResource = () => {
+//         setData(prevState => ({ ...prevState, resources: [...prevState.resources, { name: '', subdomain: '', method: '', source: '', jsonLocation: '', jsonKey: '', dbName: '', user: '', password: '', ip: '', port: '', column: '', table: '', raw: '', response: '' }] }));
+//     }
+
+//     const removeResource = index => {
+//         let resourcesCopy = [...data.resources];
+//         resourcesCopy.splice(index, 1);
+//         setData(prevState => ({ ...prevState, resources: resourcesCopy }));
+//     }
+
+//     const validateFields = () => {
+//         const allFieldsFilled = data.apiName && data.resources.every(resource => Object.values(resource).every(value => value));
+//         if (allFieldsFilled) {
+//             setShowError(false);
+//         } else {
+//             setShowError(true);
+//         }
+//         return allFieldsFilled;
+//     }
+
+//     const enviarAlaBD = e => {
+//         e.preventDefault();
+//         if (validateFields()) {
+//             console.log("Se envian los datos " + JSON.stringify(data));
+//             setData({
+//                 apiName: '',
+//                 resources: [{ name: '', subdomain: '', method: '', source: '', jsonLocation: '', jsonKey: '', dbName: '', user: '', password: '', ip: '', port: '', column: '', table: '', raw: '', response: '' }],
+//                 invalidAPIName: false,
+//             });
+//             setShowSuccess(true);
+//             setTimeout(() => setShowSuccess(false), 3000);
+//         }
+//     }
+
+//     return (
+//         <div>
+//             <Row>
+//                 <Col xs="3"></Col>
+//                 <Col xs="6">
+//                     <h2>Registro de API</h2>
+//                     {showSuccess && <Alert color="success">¡API creada con éxito!</Alert>}
+//                     {showError && <Alert color="danger">Por favor, rellena todos los campos.</Alert>}
+//                     <Form onSubmit={enviarAlaBD}>
+//                         <FormGroup>
+//                             <Label>Nombre de la API:</Label>
+//                             <Input type="text" name="apiName" value={data.apiName} onChange={e => setData({ ...data, apiName: e.target.value })} invalid={!data.apiName} />
+//                             <FormFeedback>El campo nombre es obligatorio</FormFeedback>
+//                         </FormGroup>
+//                         {data.resources.map((resource, index) => (
+//                             <div key={index}>
+//                                 <h4>
+//                                     Recurso {index + 1}
+//                                     <Button color="danger" onClick={() => removeResource(index)} style={{ marginLeft: '10px' }}>Eliminar</Button>
+//                                 </h4>
+//                                 <FormGroup>
+//                                     <Label>Nombre del recurso:</Label>
+//                                     <Input type="text" name="name" value={resource.name} onChange={e => onChange(e, index)} invalid={!resource.name} />
+//                                     <FormFeedback>Este campo es obligatorio</FormFeedback>
+//                                 </FormGroup>
+//                                 <FormGroup>
+//                                      <Label>Subdominio (path): <span title="Path específico para el recurso. Ej: /users" style={{cursor: "pointer", color: "blue"}}>?</span></Label>
+//                                      <Input type="text" name="subdomain" value={resource.subdomain} onChange={e => onChange(e, index)} />
+//                                  </FormGroup>
+//                                  <FormGroup>
+//                                      <Label>Método: <span title="Método HTTP para el recurso. GET para obtener datos, POST para enviar." style={{cursor: "pointer", color: "blue"}}>?</span></Label>
+//                                      <Input type="select" name="method" value={resource.method} onChange={e => onChange(e, index)}>
+//                                          <option value="">Selecciona un método</option>
+//                                          <option value="GET">GET</option>
+//                                          <option value="POST">POST</option>
+//                                      </Input>
+                                     
+//                                  </FormGroup>
+//                                 {/*... (Repite la estructura para el resto de campos)*/}
+//                             </div>
+//                         ))}
+//                         <Button onClick={addResource}>Agregar recurso</Button>
+//                         <FormGroup>
+//                             <Button color={!data.apiName ? "danger" : "success"} type="submit">Crear</Button>
+//                         </FormGroup>
+//                     </Form>
+//                 </Col>
+//             </Row>
+//         </div>
+//     );
+// }
+
+
+// import React, { useState } from 'react';
+// import { useForm, Controller } from 'react-hook-form';
+// import { TextField, Button, RadioGroup, FormControlLabel, Radio, FormControl, FormLabel, Tooltip, IconButton } from '@material-ui/core';
+// import HelpIcon from '@material-ui/icons/Help';
+// import { Container, Row, Col } from "react-bootstrap";
+// import contactImg from "../assets/img/contact-img.svg";
+// import 'animate.css';
+// import TrackVisibility from 'react-on-screen';
+
+
+// const APIForm = () => {
+//     const { handleSubmit, control } = useForm();
+//     const [method, setMethod] = useState('');
+//     const [source, setSource] = useState('');
+
+//     const onSubmit = (data) => {
+//         console.log(data);
+//     };
+
+//     const handleMethodChange = (event) => {
+//         setMethod(event.target.value);
+//     };
+
+//     const handleSourceChange = (event) => {
+//         setSource(event.target.value);
+//     };
+
+//     return (
+//     <section className="contact" id="APIForm">
+
+//         <Container>
+//         <Row className="align-items-center">
+//           <Col size={12} md={6}>
+//             <TrackVisibility>
+//               {({ isVisible }) =>
+//                 <img className={isVisible ? "animate__animated animate__zoomIn" : ""} src={contactImg} alt="Contact Us"/>
+//               }
+//             </TrackVisibility>
+//           </Col>
+//           <Col size={12} md={6}>
+//             <TrackVisibility>
+//               {({ isVisible }) =>
+//                 <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
+//                 <h2>Crea tu API</h2>
+
+//                 <form onSubmit={handleSubmit(onSubmit)}>
+//                     <Controller
+//                         name="nombre"
+//                         control={control}
+//                         defaultValue=""
+//                         render={({ field }) => (
+//                             <div>
+//                                 <TextField {...field} label="Nombre" />
+//                                 <Tooltip title="Nombre de la API en alfanumérico">
+//                                     <IconButton aria-label="help">
+//                                         <HelpIcon />
+//                                     </IconButton>
+//                                 </Tooltip>
+//                             </div>
+//                         )}
+//                     />
+
+//                     <Controller
+//                         name="recurso"
+//                         control={control}
+//                         defaultValue=""
+//                         render={({ field }) => (
+//                             <div>
+//                                 <TextField {...field} label="Recurso" />
+//                                 <Tooltip title="Agregar el recurso de la API">
+//                                     <IconButton aria-label="help">
+//                                         <HelpIcon />
+//                                     </IconButton>
+//                                 </Tooltip>
+//                             </div>
+//                         )}
+//                     />
+
+//                     <FormControl component="fieldset">
+//                         <FormLabel component="legend">Método</FormLabel>
+//                         <Controller
+//                             control={control}
+//                             defaultValue=""
+//                             name="metodo"
+//                             render={({ field }) => (
+//                                 <RadioGroup {...field} onChange={(e) => { field.onChange(e); handleMethodChange(e); }}>
+//                                     <FormControlLabel value="GET" control={<Radio />} label="GET" />
+//                                     <FormControlLabel value="POST" control={<Radio />} label="POST" />
+//                                 </RadioGroup>
+//                             )}
+//                         />
+//                     </FormControl>
+
+//                     {method === 'GET' &&
+//                         <Controller
+//                             name="source"
+//                             control={control}
+//                             defaultValue=""
+//                             render={({ field }) => (
+//                                 <div>
+//                                     <TextField {...field} label="Source" select SelectProps={{ native: true }} onChange={(e) => { field.onChange(e); handleSourceChange(e); }}>
+//                                         <option value=""></option>
+//                                         <option value="JSON">JSON</option>
+//                                         <option value="SQL">SQL</option>
+//                                     </TextField>
+//                                     <Tooltip title="Elige entre JSON y SQL para la fuente de datos">
+//                                         <IconButton aria-label="help">
+//                                             <HelpIcon />
+//                                         </IconButton>
+//                                     </Tooltip>
+//                                 </div>
+//                             )}
+//                         />
+//                     }
+
+//                     {source === 'JSON' &&
+//                         <>
+//                             <Controller
+//                                 name="ubicacion"
+//                                 control={control}
+//                                 defaultValue=""
+//                                 render={({ field }) => (
+//                                     <div>
+//                                         <TextField {...field} label="Ubicación" />
+//                                         <Tooltip title="Indica el path de la base de datos">
+//                                             <IconButton aria-label="help">
+//                                                 <HelpIcon />
+//                                             </IconButton>
+//                                         </Tooltip>
+//                                     </div>
+//                                 )}
+//                             />
+                            
+//                             <Controller
+//                                 name="key"
+//                                 control={control}
+//                                 defaultValue=""
+//                                 render={({ field }) => (
+//                                     <div>
+//                                         <TextField {...field} label="Key" />
+//                                         <Tooltip title="Nombre de la key en ese JSON del campo de la base de datos">
+//                                             <IconButton aria-label="help">
+//                                                 <HelpIcon />
+//                                             </IconButton>
+//                                         </Tooltip>
+//                                     </div>
+//                                 )}
+//                             />
+//                         </>
+//                     }
+                    
+//                     {source === 'SQL' &&
+//                         <>
+//                             <Controller
+//                                 name="nombreBaseDatos"
+//                                 control={control}
+//                                 defaultValue=""
+//                                 render={({ field }) => <TextField {...field} label="Nombre de la base de datos" />}
+//                             />
+
+//                             {/* Agrega los demás campos de la misma manera */}
+//                         </>
+//                     }
+
+//                     <Button type="submit" variant="contained" color="primary">Crear</Button>
+//                 </form>
+//                 </div>}
+//             </TrackVisibility>
+//           </Col>
+//         </Row>
+//       </Container>
+//     </section>
+
+//     );
+// };
+
+// export const FormularioAPI = APIForm;
+
+
+
+
+
+// import React, { useState } from 'react';
+
+// // Formulario para la creación de APIs
+// export const FormularioAPI = ({ onFormSubmit }) => {
+//     const [method, setMethod] = useState("");  // para controlar si es GET o POST
+
+//     const onSubmit = (data) => {
+//         onFormSubmit(data);
+//     };
+
+//     return (
+//         <form onSubmit={handleSubmit(onSubmit)}>
+//             <label>Nombre de la API:</label>
+//             <input name="apiName" {...register("apiName")} required />
+
+//             <label>Recurso:</label>
+//             <button type="button">+</button>
+//             <button type="button">-</button>
+
+//             <label>Nombre del subdominio:</label>
+//             <input name="subdomainName" {...register("subdomainName")} required />
+
+//             <label>Path del subdominio:</label>
+//             <input name="subdomainPath" {...register("subdomainPath")} required />
+
+//             <label>Método:</label>
+//             <select name="method" {...register("method")} onChange={(e) => setMethod(e.target.value)} required>
+//                 <option value="GET">GET</option>
+//                 <option value="POST">POST</option>
+//             </select>
+
+//             {method === "GET" && (
+//                 <div>
+//                     <label>Source:</label>
+//                     <select name="source" {...register("source")} required>
+//                         <option value="JSON">JSON</option>
+//                         <option value="SQL">SQL</option>
+//                     </select>
+
+//                     {watch("source") === "JSON" && (
+//                         <div>
+//                             <label>Ubicación:</label>
+//                             <input name="jsonLocation" {...register("jsonLocation")} required />
+
+//                             <label>Key:</label>
+//                             <input name="jsonKey" {...register("jsonKey")} required />
+//                         </div>
+//                     )}
+
+//                     {watch("source") === "SQL" && (
+//                         <div>
+//                             <label>Nombre de la base de datos:</label>
+//                             <input name="dbName" {...register("dbName")} required />
+
+//                             {/* Aquí irían los otros campos para SQL... */}
+//                         </div>
+//                     )}
+//                 </div>
+//             )}
+
+//             {/* Aquí iría la parte para el método POST, que sería similar al GET... */}
+
+//             <button type="submit">Crear</button>
+//         </form>
+//     );
+// };
+
+// // Componente padre (si decides usarlo)
+// const App = () => {
+//     const [formData, setFormData] = useState(null);
+
+//     const handleFormSubmit = (data) => {
+//         setFormData(data);
+//     };
+
+//     return (
+//         <div>
+//             <FormularioAPI onFormSubmit={handleFormSubmit} />
+//             {formData && <div>{JSON.stringify(formData)}</div>}
+//         </div>
+//     );
+// };
+
+// export default FormularioAPI;  // Exportamos FormularioAPI por defecto
+
+
+
+
+//AQUI LTIMO GENERADO SIN GET OPTIONS SIN ALERTAS
+
+// import React, { useState } from 'react';
+// import { Row, Col, Form, Input, Label, FormGroup, Button, FormFeedback } from 'reactstrap';
+
+// export const FormularioAPI = () => {
+//     const [data, setData] = useState({
+//         apiName: '',
+//         resources: [{ name: '', subdomain: '', method: '', source: '', jsonLocation: '', jsonKey: '', dbName: '', user: '', password: '', ip: '', port: '', column: '', table: '', raw: '', response: '' }],
+//         invalidAPIName: false,
+//     });
+
+//     const onChange = (e, index) => {
+//         const { name, value } = e.target;
+//         let resourcesCopy = [...data.resources];
+//         resourcesCopy[index][name] = value;
+//         setData(prevState => ({ ...prevState, resources: resourcesCopy }));
+//     }
+
+//     const addResource = () => {
+//         setData(prevState => ({ ...prevState, resources: [...prevState.resources, { name: '', subdomain: '', method: '', source: '', jsonLocation: '', jsonKey: '', dbName: '', user: '', password: '', ip: '', port: '', column: '', table: '', raw: '', response: '' }] }));
+//     }
+
+//     const removeResource = index => {
+//         let resourcesCopy = [...data.resources];
+//         resourcesCopy.splice(index, 1);
+//         setData(prevState => ({ ...prevState, resources: resourcesCopy }));
+//     }
+
+//     const enviarAlaBD = e => {
+//         e.preventDefault();
+//         // Puedes agregar más validaciones si es necesario.
+//         console.log("Se envian los datos " + JSON.stringify(data));
+//     }
+
+//     return (
+//         <div>
+//             <Row>
+//                 <Col xs="3"></Col>
+//                 <Col xs="6">
+//                     <h2>Registro de API</h2>
+//                     <Form onSubmit={enviarAlaBD}>
+//                         <FormGroup>
+//                             <Label>Nombre de la API:</Label>
+//                             <Input type="text" name="apiName" value={data.apiName} onChange={e => setData({ ...data, apiName: e.target.value })} />
+//                             <FormFeedback>El campo nombre es obligatorio</FormFeedback>
+//                         </FormGroup>
+
+//                         {data.resources.map((resource, index) => (
+//                             <div key={index}>
+//                                 <h4>
+//                                     Recurso {index + 1}
+//                                     <Button color="danger" onClick={() => removeResource(index)} style={{ marginLeft: '10px' }}>Eliminar</Button>
+//                                 </h4>
+//                                 <FormGroup>
+//                                     <Label>Nombre del recurso: <span title="Nombre único del recurso. Ej: Usuarios" style={{cursor: "pointer", color: "blue"}}>?</span></Label>
+//                                     <Input type="text" name="name" value={resource.name} onChange={e => onChange(e, index)} />
+//                                 </FormGroup>
+//                                 <FormGroup>
+//                                     <Label>Subdominio (path): <span title="Path específico para el recurso. Ej: /users" style={{cursor: "pointer", color: "blue"}}>?</span></Label>
+//                                     <Input type="text" name="subdomain" value={resource.subdomain} onChange={e => onChange(e, index)} />
+//                                 </FormGroup>
+//                                 <FormGroup>
+//                                     <Label>Método: <span title="Método HTTP para el recurso. GET para obtener datos, POST para enviar." style={{cursor: "pointer", color: "blue"}}>?</span></Label>
+//                                     <Input type="select" name="method" value={resource.method} onChange={e => onChange(e, index)}>
+//                                         <option value="">Selecciona un método</option>
+//                                         <option value="GET">GET</option>
+//                                         <option value="POST">POST</option>
+//                                     </Input>
+//                                 </FormGroup>
+//                                 {/* ... (resto del código no modificado) */}
+//                             </div>
+//                         ))}
+//                         <Button onClick={addResource}>Agregar recurso</Button>
+//                         <FormGroup>
+//                             <Button color="success" type="submit">Crear</Button>
+//                         </FormGroup>
+//                     </Form>
+//                 </Col>
+//             </Row>
+//         </div>
+//     );
+// }
+
+//AQUI LTIMO GENERADO SIN GET OPTIONS CON ALERTAS
+// import React, { useState } from 'react';
+// import { Row, Col, Form, Input, Label, FormGroup, Button, FormFeedback, Alert } from 'reactstrap';
+
+// export const FormularioAPI = () => {
+//     const [data, setData] = useState({
+//         apiName: '',
+//         resources: [{ name: '', subdomain: '', method: '', source: '', jsonLocation: '', jsonKey: '', dbName: '', user: '', password: '', ip: '', port: '', column: '', table: '', raw: '', response: '' }],
+//         invalidAPIName: false,
+//     });
+//     const [showSuccess, setShowSuccess] = useState(false);
+//     const [showError, setShowError] = useState(false);
+
+//     const onChange = (e, index) => {
+//         const { name, value } = e.target;
+//         let resourcesCopy = [...data.resources];
+//         resourcesCopy[index][name] = value;
+//         setData(prevState => ({ ...prevState, resources: resourcesCopy }));
+//         if(showError) {
+//             validateFields();
+//         }
+//     }
+
+//     const addResource = () => {
+//         setData(prevState => ({ ...prevState, resources: [...prevState.resources, { name: '', subdomain: '', method: '', source: '', jsonLocation: '', jsonKey: '', dbName: '', user: '', password: '', ip: '', port: '', column: '', table: '', raw: '', response: '' }] }));
+//     }
+
+//     const removeResource = index => {
+//         let resourcesCopy = [...data.resources];
+//         resourcesCopy.splice(index, 1);
+//         setData(prevState => ({ ...prevState, resources: resourcesCopy }));
+//     }
+
+//     const validateFields = () => {
+//         const allFieldsFilled = data.apiName && data.resources.every(resource => Object.values(resource).every(value => value));
+//         if (allFieldsFilled) {
+//             setShowError(false);
+//         } else {
+//             setShowError(true);
+//         }
+//         return allFieldsFilled;
+//     }
+
+//     const enviarAlaBD = e => {
+//         e.preventDefault();
+//         if (validateFields()) {
+//             console.log("Se envian los datos " + JSON.stringify(data));
+//             setData({
+//                 apiName: '',
+//                 resources: [{ name: '', subdomain: '', method: '', source: '', jsonLocation: '', jsonKey: '', dbName: '', user: '', password: '', ip: '', port: '', column: '', table: '', raw: '', response: '' }],
+//                 invalidAPIName: false,
+//             });
+//             setShowSuccess(true);
+//             setTimeout(() => setShowSuccess(false), 3000);
+//         }
+//     }
+
+//     return (
+//         <div>
+//             <Row>
+//                 <Col xs="3"></Col>
+//                 <Col xs="6">
+//                     <h2>Registro de API</h2>
+//                     {showSuccess && <Alert color="success">¡API creada con éxito!</Alert>}
+//                     {showError && <Alert color="danger">Por favor, rellena todos los campos.</Alert>}
+//                     <Form onSubmit={enviarAlaBD}>
+//                         <FormGroup>
+//                             <Label>Nombre de la API:</Label>
+//                             <Input type="text" name="apiName" value={data.apiName} onChange={e => setData({ ...data, apiName: e.target.value })} invalid={!data.apiName} />
+//                             <FormFeedback>El campo nombre es obligatorio</FormFeedback>
+//                         </FormGroup>
+//                         {data.resources.map((resource, index) => (
+//                             <div key={index}>
+//                                 <h4>
+//                                     Recurso {index + 1}
+//                                     <Button color="danger" onClick={() => removeResource(index)} style={{ marginLeft: '10px' }}>Eliminar</Button>
+//                                 </h4>
+//                                 <FormGroup>
+//                                     <Label>Nombre del recurso:</Label>
+//                                     <Input type="text" name="name" value={resource.name} onChange={e => onChange(e, index)} invalid={!resource.name} />
+//                                     <FormFeedback>Este campo es obligatorio</FormFeedback>
+//                                 </FormGroup>
+//                                 <FormGroup>
+//                                      <Label>Subdominio (path): <span title="Path específico para el recurso. Ej: /users" style={{cursor: "pointer", color: "blue"}}>?</span></Label>
+//                                      <Input type="text" name="subdomain" value={resource.subdomain} onChange={e => onChange(e, index)} />
+//                                  </FormGroup>
+//                                  <FormGroup>
+//                                      <Label>Método: <span title="Método HTTP para el recurso. GET para obtener datos, POST para enviar." style={{cursor: "pointer", color: "blue"}}>?</span></Label>
+//                                      <Input type="select" name="method" value={resource.method} onChange={e => onChange(e, index)}>
+//                                          <option value="">Selecciona un método</option>
+//                                          <option value="GET">GET</option>
+//                                          <option value="POST">POST</option>
+//                                      </Input>
+                                     
+//                                  </FormGroup>
+//                                 {/*... (Repite la estructura para el resto de campos)*/}
+//                             </div>
+//                         ))}
+//                         <Button onClick={addResource}>Agregar recurso</Button>
+//                         <FormGroup>
+//                             <Button color={!data.apiName ? "danger" : "success"} type="submit">Crear</Button>
+//                         </FormGroup>
+//                     </Form>
+//                 </Col>
+//             </Row>
+//         </div>
+//     );
+// }
+
+
+// import React, { useState, useEffect } from 'react';
+// import { Row, Col, Form, Input, Label, FormGroup, Button, FormFeedback, Alert } from 'reactstrap';
+
+// export const FormularioAPI = () => {
+//     const initialState = {
+//         apiName: '',
+//         resources: [{ name: '', subdomain: '', method: '', source: '', jsonLocation: '', jsonKey: '', dbName: '', user: '', password: '', ip: '', port: '', column: '', table: '', raw: '', response: '' }],
+//         invalidAPIName: false,
+//     };
+
+//     const [data, setData] = useState(initialState);
+//     const [allValidFields, setAllValidFields] = useState(true);
+//     const [formSubmitted, setFormSubmitted] = useState(false);
+
+//     const reiniciarFormulario = () => {
+//         setData(initialState);
+//         setFormSubmitted(false);
+//         setAllValidFields(true);
+//     }
+//     const validateFields = () => {
+//         let allFieldsFilled = true;
+//         if(!data.apiName) allFieldsFilled = false;
+
+//         data.resources.forEach(resource => {
+//             for(let key in resource) {
+//                 if(!resource[key]) allFieldsFilled = false;
+//             }
+//         });
+
+//         setAllValidFields(allFieldsFilled);
+//     }
+
+//     useEffect(() => {
+//         if(formSubmitted) validateFields();
+//     }, [data, formSubmitted]);
+
+//     const onChange = (e, index) => {
+//         const { name, value } = e.target;
+//         let resourcesCopy = [...data.resources];
+//         resourcesCopy[index][name] = value;
+//         setData(prevState => ({ ...prevState, resources: resourcesCopy }));
+//     }
+
+//     const addResource = () => {
+//         setData(prevState => ({ 
+//             ...prevState, 
+//             resources: [
+//                 ...prevState.resources, 
+//                 { name: '', subdomain: '', method: '', source: '', jsonLocation: '', jsonKey: '', dbName: '', user: '', password: '', ip: '', port: '', column: '', table: '', raw: '', response: '', url: '' }
+//             ]
+//         }));
+//     }
+
+//     const removeResource = index => {
+//         let resourcesCopy = [...data.resources];
+//         resourcesCopy.splice(index, 1);
+//         setData(prevState => ({ ...prevState, resources: resourcesCopy }));
+//     }
+
+//     const enviarAlaBD = e => {
+//         e.preventDefault();
+//         setFormSubmitted(true);
+        
+        
+//         if(allValidFields) {
+//             console.log("Se envian los datos " + JSON.stringify(data));
+//             // Resetea el formulario después de enviarlo
+//             setData({
+//                 apiName: '',
+//                 resources: [{ name: '', subdomain: '', method: '', source: '', jsonLocation: '', jsonKey: '', dbName: '', user: '', password: '', ip: '', port: '', column: '', table: '', raw: '', response: '', url: '' }],
+//                 invalidAPIName: false,
+//             });
+//             alert("API creada con éxito!");
+//         }
+//     }
+
+
+//     return (
+//       <section id="FormAPI">
+
+//         <div>
+//             <Row>
+//                 <Col xs="3"></Col>
+//                 <Col xs="6">
+//                     <h2>Registro de API</h2>
+//                     <Button color="warning" onClick={reiniciarFormulario} style={{ marginBottom: '20px' }}>Reiniciar</Button>
+//                     {!allValidFields && formSubmitted && <Alert color="danger">Por favor, rellena todos los campos.</Alert>}
+//                     {formSubmitted && allValidFields && <Alert color="success">¡API creada con éxito!</Alert>}
+//                     <Form onSubmit={enviarAlaBD}>
+//                         <FormGroup>
+//                             <Label>Nombre de la API:</Label>
+//                             <Input 
+//                                 type="text" 
+//                                 name="apiName" 
+//                                 value={data.apiName} 
+//                                 onChange={e => setData({ ...data, apiName: e.target.value })}
+//                                 invalid={!data.apiName && formSubmitted}
+//                             />
+//                             <FormFeedback>El campo nombre es obligatorio</FormFeedback>
+//                         </FormGroup>
+
+//                         {data.resources.map((resource, index) => (
+//                             <div key={index}>
+//                                 <h4>
+//                                     Recurso {index + 1}
+//                                     <Button color="danger" onClick={() => removeResource(index)} style={{ marginLeft: '10px' }}>Eliminar</Button>
+//                                 </h4>
+//                                 <FormGroup>
+//                                     <Label>Nombre del recurso:</Label>
+//                                     <Input 
+//                                         type="text" 
+//                                         name="name" 
+//                                         value={resource.name} 
+//                                         onChange={e => onChange(e, index)} 
+//                                         invalid={!resource.name && formSubmitted}
+//                                     />
+//                                     <FormFeedback>Este campo es obligatorio</FormFeedback>
+//                                 </FormGroup>
+//                                 <FormGroup>
+//                                     <Label>Subdominio (path):</Label>
+//                                     <Input 
+//                                         type="text" 
+//                                         name="subdomain" 
+//                                         value={resource.subdomain} 
+//                                         onChange={e => onChange(e, index)} 
+//                                         invalid={!resource.subdomain && formSubmitted}
+//                                     />
+//                                     <FormFeedback>Este campo es obligatorio</FormFeedback>
+//                                 </FormGroup>
+//                                 <FormGroup>
+//                                     <Label>Método:</Label>
+//                                     <Input 
+//                                         type="select" 
+//                                         name="method" 
+//                                         value={resource.method} 
+//                                         onChange={e => onChange(e, index)}
+//                                         invalid={!resource.method && formSubmitted}
+//                                     >
+//                                         <option value="">Selecciona un método</option>
+//                                         <option value="GET">GET</option>
+//                                         <option value="POST">POST</option>
+//                                     </Input>
+//                                     <FormFeedback>Este campo es obligatorio</FormFeedback>
+//                                 </FormGroup>
+//                                 {resource.method === "POST" && (
+//                                     <FormGroup>
+//                                         <Label>URL:</Label>
+//                                         <Input 
+//                                             type="text" 
+//                                             name="url" 
+//                                             value={resource.url} 
+//                                             onChange={e => onChange(e, index)} 
+//                                             invalid={!resource.url && formSubmitted}
+//                                         />
+//                                         <FormFeedback>Este campo es obligatorio al seleccionar POST</FormFeedback>
+//                                     </FormGroup>
+//                                 )}
+//                                 {resource.method === "GET" && (
+//                                     <FormGroup>
+//                                         <Label>Source:</Label>
+//                                         <Input 
+//                                             type="select" 
+//                                             name="source" 
+//                                             value={resource.source} 
+//                                             onChange={e => onChange(e, index)}
+//                                             invalid={!resource.source && formSubmitted}
+//                                         >
+//                                             <option value="">Selecciona una fuente</option>
+//                                             <option value="JSON">JSON</option>
+//                                             <option value="SQL">SQL</option>
+//                                         </Input>
+//                                         <FormFeedback>Este campo es obligatorio al seleccionar GET</FormFeedback>
+//                                     </FormGroup>
+//                                 )}
+
+//                                 {resource.source === "JSON" && (
+//                                     <>
+//                                         <FormGroup>
+//                                             <Label>Ubicación del JSON:</Label>
+//                                             <Input 
+//                                                 type="text" 
+//                                                 name="jsonLocation" 
+//                                                 value={resource.jsonLocation} 
+//                                                 onChange={e => onChange(e, index)} 
+//                                                 invalid={!resource.jsonLocation && formSubmitted}
+//                                             />
+//                                             <FormFeedback>Este campo es obligatorio al seleccionar JSON</FormFeedback>
+//                                         </FormGroup>
+
+//                                         <FormGroup>
+//                                             <Label>Key (parámetro):</Label>
+//                                             <Input 
+//                                                 type="text" 
+//                                                 name="jsonKey" 
+//                                                 value={resource.jsonKey} 
+//                                                 onChange={e => onChange(e, index)} 
+//                                                 invalid={!resource.jsonKey && formSubmitted}
+//                                             />
+//                                             <FormFeedback>Este campo es obligatorio al seleccionar JSON</FormFeedback>
+//                                         </FormGroup>
+//                                     </>
+//                                 )}
+
+//                                 {resource.source === "SQL" && (
+//                                     <>
+//                                         <FormGroup>
+//                                             <Label>Nombre de la Base de Datos:</Label>
+//                                             <Input 
+//                                                 type="text" 
+//                                                 name="dbName" 
+//                                                 value={resource.dbName} 
+//                                                 onChange={e => onChange(e, index)} 
+//                                                 invalid={!resource.dbName && formSubmitted}
+//                                             />
+//                                             <FormFeedback>Este campo es obligatorio al seleccionar SQL</FormFeedback>
+//                                         </FormGroup>
+//                                         {/*... (aquí puedes repetir la estructura para el resto de campos de SQL, como user, password, etc.)*/}
+//                                     </>
+//                                 )}
+
+                                
+
+//                                 {/*... (Repite la estructura para el resto de campos, asegurándote de agregar la validación donde sea necesario)*/}
+//                             </div>
+//                         ))}
+//                         <Button onClick={addResource}>Agregar recurso</Button>
+//                         <FormGroup>
+//                             <Button color="success" type="submit">Crear</Button>
+//                         </FormGroup>
+//                     </Form>
+//                 </Col>
+//             </Row>
+//         </div>
+//       </section>
+
+//     );
+// }
+
+
+
+
+
+
+
+//expresiones regulares
+	const expresiones = {
+		name: /^[a-zA-Z0-9_-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+		subdomain: /^[a-zA-Z0-9!@#$%^&*()_\-+=<>?/[\]{},.|~]+$/, // Letras numeros caracteres especiales
+        Source: /^[a-zA-Z0-9!@#$%^&*()_\-+=<>?/[\]{},.|~]+$/, // Letras numeros caracteres especiales
+        Dir: /^[a-zA-Z0-9!@#$%^&*()_\-+=<>?/[\]{},.|~]+$/,
+        Param:/^[a-zA-Z0-9_-]{4,16}$/,
+        DbName:/^[a-zA-Z0-9_-]{4,16}$/,
+        Username:/^[a-zA-Z0-9_-]{4,16}$/,
+        Password: /^[a-zA-Z0-9!@#$%^&*()_\-+=<>?/[\]{},.|~]+$/,
+        Ip:/^[a-zA-Z0-9!@#$%^&*()_\-+=<>?/[\]{},.|~]+$/,
+        Port: /^[a-zA-Z0-9!@#$%^&*()_\-+=<>?/[\]{},.|~]+$/,
+        Columns:/^[a-zA-Z0-9_-]{4,16}$/,
+        Table:/^[a-zA-Z0-9_-]{4,16}$/,
+        Values:/^[a-zA-Z0-9_-]{4,16}$/,
+	}

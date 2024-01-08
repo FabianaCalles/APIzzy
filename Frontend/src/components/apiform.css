@@ -1,0 +1,89 @@
+.tooltip-button {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #ccc;
+    margin-left:  10px;
+}
+/* Boton de condicion */
+.customButton {
+    background-color: rgba(11, 110, 11, 0.67);
+    color: white;
+    font-family: Arial;
+    border: none;
+}.customButton:hover {
+    background-color: rgb(2, 62, 2);  /* Cambia a un verde más oscuro*/
+}
+/* Contenedor principal */
+.containerConditions {
+    display: flex;           /* Usar Flexbox */
+    flex-direction: row;  /* Organizar los hijos en columnas (uno debajo del otro) */
+    align-items: center;     /* Centrar horizontalmente */
+}
+
+/* Estilo para botones y textos */
+.containerConditions button, .container p, .container h1, .container h2, .container h3 {
+    margin: 10px;            /* Espacio entre elementos */
+    margin-bottom: 20px;
+}
+
+/* Estilos globales para el cuerpo de la página */
+.body {
+    font-family: 'Arial', sans-serif; /* Usa la fuente que prefieras */
+    background-color: #f4f4f4; /* Un fondo claro para contrastar con el formulario */
+    display: flex;
+    justify-content: center; /* Centrar el formulario horizontalmente */
+    align-items: center; /* Centrar el formulario verticalmente */
+    height: 100vh; /* Asegurarte de que el body ocupe toda la altura de la vista */
+    margin: 0; /* Quitar márgenes */
+}
+
+/* Estilos para el contenedor del formulario */
+.form-container {
+    background-color: #28153b; /* Gris oscuro */
+    border-radius: 30px; /* Bordes redondeados */
+    padding: 20px 40px; /* Espaciado interno */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+/* Estilos para los inputs y labels del formulario */
+.form-container label {
+    color: #eee; /* Color claro para el texto */
+    font-size: 14px; /* Tamaño de letra */
+    margin-bottom: 5px; /* Espaciado */
+}
+
+.form-container input[type="text"], .form-container select {
+    width: 100%; /* Que ocupe todo el ancho disponible */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    border: 1px solid #aaa; /* Borde sutil */
+    background-color: #444; /* Un gris un poco más claro que el contenedor */
+    color: #fff; /* Texto blanco */
+    font-size: 14px; /* Tamaño de letra */
+    margin-bottom: 15px; /* Espaciado entre elementos del formulario */
+}
+
+/* Estilos para el botón de enviar */
+.form-container button {
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #9054a8; /* Color azul (puedes cambiarlo por tu preferido) */
+    color: #fff; /* Texto blanco */
+    font-size: 16px; /* Tamaño de letra */
+    cursor: pointer; /* Indicador de mano al pasar el ratón */
+    transition: background-color 0.3s; /* Transición suave al cambiar de color */
+}
+
+.form-container button:hover {
+    background-color: #ad78c9; /* Oscurecer un poco el color al pasar el ratón */
+}
+.mi-input-customizado::placeholder {
+    color: rgb(195, 195, 195);
+}
