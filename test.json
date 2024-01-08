@@ -1,0 +1,35 @@
+{
+    "ClassName": "ClassName",
+    "Endpoint": "/miau",
+    "Methods": [
+        {
+            "Type": "put",
+            "Source": "sql",
+            "MethodConfig": {
+                "Json": {
+                    "Dir": "./prueba.json",
+                    "Param": "prueba"
+                },
+                "Sql": {
+                    "DbName": "prueba",
+                    "Username": "simao",
+                    "Password": "simao",
+                    "Ip": "127.0.0.1",
+                    "Port": "5432",
+                    "Columns": ["lastname", "firstname"],
+                    "Values": ["Fabiana", "Calles"],
+                    "Table": "Persons",
+                    "Conditions": [
+                        {
+                            "Column": "lastname",
+                            "Value": "Calles"
+                        }
+                    ]
+                },
+                "Raw": {
+                    "Param": "Simon guarro"
+                }
+            }
+        }
+    ]
+}

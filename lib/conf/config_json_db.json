@@ -1,0 +1,28 @@
+{
+    "ClassName": "ClassName",
+    "Endpoint": "/miau",
+    "Methods": [
+        {
+            "Type": "get",
+            "Source": "Sql",
+            "MethodConfig": {
+                "Json": {
+                    "Dir": "./prueba.json",
+                    "Param": "miiiiaaauu"
+                },
+                "Sql": {
+                    "DbName": "prueba",
+                    "Username": "simao",
+                    "Password": "simao",
+                    "Ip": "127.0.0.1",
+                    "Port": "5432",
+                    "Columns": ["lastname", "firstname"],
+                    "Table": "Persons"
+                },
+                "Raw": {
+                    "Param": "Simon guarro"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "ClassName": "ClassName",
+    "Endpoint": "/miau",
+    "Methods": [
+        {
+            "Type": "get",
+            "Source": "raw",
+            "MethodConfig": {
+                "Json": {
+                    "Dir": "string",
+                    "Param": "True/False"
+                },
+                "Sql": {
+                    "Ip": "ip",
+                    "Port": "port"
+                },
+                "Raw": {
+                    "Param": "Simon guarro"
+                }
+            }
+        }
+    ]
+}

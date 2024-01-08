@@ -1,0 +1,22 @@
+{
+    "ClassName": "ClassName",
+    "Methods": [
+        {
+            "Type": "get",
+            "Source": "raw",
+            "MethodConfig": {
+                "Json": {
+                    "dir": "string",
+                    "param": "Y/N"
+                },
+                "sql": {
+                    "ip": "ip",
+                    "port": "port"
+                },
+                "raw": {
+                    "value": "Simon guarro"
+                }
+            }
+        }
+    ]
+}
